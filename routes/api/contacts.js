@@ -8,22 +8,31 @@ const { schemas } = require("../../models/contact");
 
 const controllers = require("../../controllers");
 
-router.get("/", controllers.getAllContacts);
+const { authenticate } = require("../../middlewares");
 
-router.get("/:contactId", controllers.getContactById);
+router.get("/", authenticate, controllers.getAllContacts);
 
-router.post("/", validateBody(schemas.addSchema), controllers.addContact);
+router.get("/:contactId", authenticate, controllers.getContactById);
 
-router.delete("/:contactId", controllers.deleteContact);
+router.post(
+  "/",
+  authenticate,
+  validateBody(schemas.addSchema),
+  controllers.addContact
+);
+
+router.delete("/:contactId", authenticate, controllers.deleteContact);
 
 router.put(
   "/:contactId",
+  authenticate,
   validateBody(schemas.addSchema),
   controllers.updateContact
 );
 
 router.patch(
   "/:contactId/favorite",
+  authenticate,
   validateBody(schemas.updateFavoriteSchema),
   controllers.updateStatusContact
 );
