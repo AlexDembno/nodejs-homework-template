@@ -69,5 +69,4 @@ module.exports = {
   deleteContact: controllerWrapper(deleteContact),
   updateContact: controllerWrapper(updateContact),
   updateStatusContact: controllerWrapper(updateStatusContact),
-  
 };

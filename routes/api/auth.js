@@ -6,7 +6,7 @@ const { validateBody } = require("../../utils");
 
 const { schemas } = require("../../models/user");
 
-const { authenticate } = require("../../middlewares");
+const { authenticate, upload } = require("../../middlewares");
 
 const controllers = require("../../controllers");
 
@@ -23,5 +23,12 @@ router.get("/current", authenticate, controllers.current);
 router.post("/logout", authenticate, controllers.logout);
 
 router.patch("/", authenticate, controllers.updateSubscription);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  controllers.updateAvatars
+);
 
 module.exports = router;
