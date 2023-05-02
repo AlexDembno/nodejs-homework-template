@@ -9,6 +9,8 @@ const {
 
 const {
   register,
+  verify,
+  resendVerify,
   login,
   current,
   logout,
@@ -24,6 +26,8 @@ module.exports = {
   updateContact,
   updateStatusContact,
   register,
+  verify,
+  resendVerify,
   login,
   current,
   logout,
